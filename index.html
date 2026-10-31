@@ -130,6 +130,7 @@ section.blk{padding-block:96px;position:relative}
 .node .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--panel-solid);border:1px solid var(--edge);color:var(--muted)}
 .node .ic svg{width:22px;height:22px}
 .node .nm{font-size:.8rem;font-weight:600;color:var(--muted);line-height:1.3}
+.node .txt{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
 .node .ow{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
 .node.csv .ic{background:linear-gradient(rgba(255,201,40,.12),rgba(255,201,40,.12)),var(--panel-solid);border-color:var(--signal);color:var(--signal);box-shadow:0 0 0 6px rgba(255,201,40,.06),0 0 28px rgba(255,201,40,.35);animation:breathe 3s ease-in-out infinite}
 .node.csv .nm{color:var(--ink)}
@@ -142,7 +143,7 @@ section.blk{padding-block:96px;position:relative}
   .chain .rail{left:46px;right:auto;top:28px;bottom:28px;width:2px;height:auto}
   .chain .rail::after{width:auto;height:120px;left:0;right:0;animation:flowv 3.2s linear infinite}
   .node{flex-direction:row;text-align:left;gap:14px}
-  .node .txt{display:flex;flex-direction:column}
+  .node .txt{align-items:flex-start}
 }
 @keyframes flowv{from{top:-120px}to{top:100%}}
 
@@ -265,6 +266,18 @@ footer .base .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap
 @media (max-width:760px){footer .row{grid-template-columns:1fr}}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal.pre{opacity:1;transform:none}footer .say span,.words span{opacity:1!important}}
+
+/* Floating WhatsApp */
+.wa-float{position:fixed;z-index:55;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.55),0 0 0 1px rgba(255,255,255,.1);transition:transform .2s}
+.wa-float:hover{transform:scale(1.06)}
+.wa-float svg{width:32px;height:32px}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;background:#25D366;animation:waping 2.4s cubic-bezier(0,0,.2,1) infinite;z-index:-1}
+@keyframes waping{0%{transform:scale(1);opacity:.5}80%,100%{transform:scale(1.7);opacity:0}}
+.wa-float .tip{position:absolute;right:72px;white-space:nowrap;background:rgba(5,11,22,.9);border:1px solid var(--edge);color:var(--ink);font-size:.82rem;font-weight:600;padding:7px 12px;border-radius:999px;opacity:0;transform:translateX(6px);transition:opacity .2s,transform .2s;pointer-events:none}
+.wa-float:hover .tip,.wa-float:focus-visible .tip{opacity:1;transform:none}
+.walink{color:var(--signal);font-weight:600;text-decoration:none}
+.walink:hover{text-decoration:underline}
+@media (max-width:420px){.wa-float{width:54px;height:54px}.wa-float .tip{display:none}}
 </style>
 
 </head>
@@ -282,7 +295,7 @@ footer .base .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap
       <a href="#claudio">Claudio</a>
       <a href="#parceria">Parceria</a>
     </nav>
-    <a class="btn btn-signal" href="#contato">Seja parceiro</a>
+    <a class="btn btn-signal" href="http://wa.me/+5515981171888" target="_blank" rel="noopener">Seja parceiro</a>
   </div>
 </header>
 
@@ -449,14 +462,15 @@ footer .base .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap
   </div>
 </section>
 
+<a class="wa-float" href="http://wa.me/+5515981171888" target="_blank" rel="noopener" aria-label="Conversar com a CSV Aduaneiro no WhatsApp"><span class="tip">Fale com Claudio no WhatsApp</span><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 6.9L3.2 29l6.5-1.7c1.9 1 4.1 1.6 6.3 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3Zm0 23.5c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.7-.3-.4c-1.1-1.7-1.7-3.8-1.7-5.9C5.1 9.9 10 5.2 16 5.2s10.9 4.7 10.9 10.6S22 26.5 16 26.5Zm6-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.3 3.5 5.6 4.9 2.8 1.1 3.3.9 3.9.8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg></a>
 <footer id="contato">
   <div class="wrap cta">
     <p class="kicker" style="margin-bottom:22px">Contato</p>
     <p class="say" id="say">Vocês vendem a operação. A CSV garante que a carga técnica passa.</p>
     <div class="row">
-      <div><a class="btn btn-signal" href="#topo">Agendar conversa de parceria <span class="arr">→</span></a></div>
+      <div><a class="btn btn-signal" href="http://wa.me/+5515981171888" target="_blank" rel="noopener">Agendar conversa de parceria <span class="arr">→</span></a></div>
       <dl>
-        <dt>WhatsApp</dt><dd><span class="ph">(15) 9XXXX-XXXX</span></dd>
+        <dt>WhatsApp</dt><dd><a class="walink" href="http://wa.me/+5515981171888" target="_blank" rel="noopener">Conversar no WhatsApp →</a></dd>
         <dt>E-mail</dt><dd><span class="ph">parceiros@csvaduaneiro.com.br</span></dd>
         <dt>Base</dt><dd>Sorocaba/SP</dd>
         <dt>CNPJ</dt><dd><span class="ph">00.000.000/0001-00</span></dd>
