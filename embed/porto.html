@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Porto · CSV Aduaneiro</title>
+<meta name="robots" content="noindex">
+<style>html,body{margin:0;height:100%;background:#050B16;overflow:hidden}csv-porto{position:fixed;inset:0;height:100%}</style>
+<script src="porto.js"></script>
+</head>
+<body>
+<csv-porto id="p"></csv-porto>
+<script>
+/* Parâmetros pela URL: porto.html?hud=false&speed=40&horizon=0.55&labels=A|B|C */
+const q=new URLSearchParams(location.search),p=document.getElementById("p");
+["hud","speed","horizon","labels"].forEach(k=>{if(q.has(k))p.setAttribute(k,q.get(k));});
+</script>
+</body>
+</html>

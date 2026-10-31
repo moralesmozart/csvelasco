@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animação do porto · como incorporar</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script src="porto.js" defer></script>
+<style>
+:root{--bg:#050B16;--ink:#EAF2FA;--muted:#8EA5BE;--edge:rgba(140,190,230,.16);--y:#FFC928;--c:#46D9F0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:40px 16px 80px}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 8px;letter-spacing:-.02em}
+h2{font-size:1.2rem;margin:40px 0 8px}
+p{color:var(--muted);margin:0 0 12px;max-width:68ch}
+.k{font:12px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+pre{background:#0A1628;border:1px solid var(--edge);border-radius:12px;padding:16px;overflow-x:auto;font:13px/1.55 ui-monospace,Menlo,monospace;color:#CFE0F0}
+code{font-family:ui-monospace,Menlo,monospace;color:var(--y)}
+csv-porto{border-radius:16px;margin:16px 0;border:1px solid var(--edge)}
+.hero-demo{position:relative;height:440px;border-radius:16px;overflow:hidden;border:1px solid var(--edge);margin:16px 0}
+.hero-demo csv-porto{position:absolute;inset:0;height:100%;margin:0;border:0;border-radius:0}
+.hero-demo .content{position:absolute;left:24px;bottom:24px;right:24px;z-index:1}
+.hero-demo h3{margin:0;font-size:clamp(1.4rem,3.5vw,2.2rem);text-shadow:0 2px 20px rgba(0,0,0,.6)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}td,th{border-bottom:1px solid var(--edge);padding:8px 6px;text-align:left;vertical-align:top}th{color:var(--muted);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="k">CSV Aduaneiro · componente</p>
+<h1>Animação do porto para outros sites</h1>
+<p>Um arquivo JavaScript, sem bibliotecas. Funciona em sites próprios, WordPress, Webflow, Wix ou qualquer página que aceite HTML.</p>
+
+<csv-porto style="height:380px"></csv-porto>
+
+<h2>Opção 1 · Script (recomendado)</h2>
+<p>Cole no HTML da página. A animação ocupa o espaço do elemento e se ajusta ao tamanho da tela.</p>
+<pre>&lt;script src="https://moralesmozart.github.io/csvelasco/embed/porto.js" defer&gt;&lt;/script&gt;
+&lt;csv-porto style="height:480px"&gt;&lt;/csv-porto&gt;</pre>
+
+<h2>Como fundo de um hero</h2>
+<p>Coloque a animação em posição absoluta atrás do conteúdo do site.</p>
+<div class="hero-demo"><csv-porto hud="false"></csv-porto><div class="content"><h3>Seu título aqui, sobre o porto</h3></div></div>
+<pre>&lt;section style="position:relative;height:560px;overflow:hidden"&gt;
+  &lt;csv-porto hud="false" style="position:absolute;inset:0;height:100%"&gt;&lt;/csv-porto&gt;
+  &lt;div style="position:relative;z-index:1"&gt;
+    ... conteúdo do site ...
+  &lt;/div&gt;
+&lt;/section&gt;</pre>
+
+<h2>Opção 2 · iframe</h2>
+<p>Para plataformas que não aceitam script (alguns construtores de site). Os parâmetros vão na URL.</p>
+<pre>&lt;iframe src="https://moralesmozart.github.io/csvelasco/embed/porto.html?hud=true"
+        style="width:100%;height:480px;border:0" loading="lazy"
+        title="Animação de navio saindo do porto"&gt;&lt;/iframe&gt;</pre>
+
+<h2>Opções</h2>
+<table>
+<tr><th>Atributo / parâmetro</th><th>Padrão</th><th>O que faz</th></tr>
+<tr><td><code>hud</code></td><td>true</td><td><code>false</code> esconde o painel de liberação (DUIMP, NCM, canal verde).</td></tr>
+<tr><td><code>labels</code></td><td>textos da CSV</td><td>Textos do painel separados por <code>|</code>. O último aparece em amarelo. Ex.: <code>Pedido recebido|Documentos ok|Carga liberada</code></td></tr>
+<tr><td><code>speed</code></td><td>55</td><td>Segundos para o navio cruzar a tela.</td></tr>
+<tr><td><code>horizon</code></td><td>automático</td><td>Altura da linha d'água, de 0.2 a 0.9.</td></tr>
+</table>
+<p style="margin-top:16px">A animação pausa quando sai da tela e fica parada para quem ativou "reduzir movimento" no sistema.</p>
+</div>
+</body>
+</html>
